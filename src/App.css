@@ -125,3 +125,29 @@ button:active {
   letter-spacing: 1px;
   font-weight: 200;
 }
+
+/* FORECAST */
+.forecast {
+  margin: 20px 0;
+  background-color: white;
+  display: inline-flex;
+  border-bottom: 2px solid #f16051;
+  opacity: 0.85;
+}
+
+.forecast .forecast-day{
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style-type: none;
+  width: 8em;
+  padding: 10px;
+}
+
+.forecast .forecast-day p {
+  text-align: center;
+}
+
+.forecast .forecast-day .day-title {
+  font-weight: bold;
+}
+
