@@ -33,26 +33,24 @@ class App extends Component {
 
     const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const data = await api_call.json();
-    console.log(data);
 
     const api_call_forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const forecastData = await api_call_forecast.json();
-    console.log(forecastData);
 
     if (city && country) {
       //setting state
       this.setState({
-        temperature: data.main.temp,
+        temperature: Math.round(data.main.temp),
         city: data.name,
         country: data.sys.country,
         humidity: data.main.humidity,
         description: data.weather[0].description,
         error: "",
-        forecastTemp1: forecastData.list[1].main.temp,
-        forecastTemp2: forecastData.list[9].main.temp,
-        forecastTemp3: forecastData.list[17].main.temp,
-        forecastTemp4: forecastData.list[25].main.temp,
-        forecastTemp5: forecastData.list[33].main.temp
+        forecastTemp1: Math.round(forecastData.list[1].main.temp),
+        forecastTemp2: Math.round(forecastData.list[9].main.temp),
+        forecastTemp3: Math.round(forecastData.list[17].main.temp),
+        forecastTemp4: Math.round(forecastData.list[25].main.temp),
+        forecastTemp5: Math.round(forecastData.list[33].main.temp)
       });
     } else {
       this.setState({
