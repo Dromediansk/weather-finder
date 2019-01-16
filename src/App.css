@@ -95,6 +95,11 @@ button:active {
   outline: none;
 }
 
+.weather-data {
+  height: 100%;
+  display: flex;
+}
+
 .weather__info {
   width: 60%;
   font-size: 20px;
@@ -126,10 +131,21 @@ button:active {
 }
 
 /* FORECAST */
+.forecast-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
 .forecast {
+  height: 100px;
   margin: 20px 0;
   background-color: white;
-  display: inline-flex;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   border-bottom: 2px solid #f16051;
   opacity: 0.85;
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Forecast = (props) => (
-    <div>
+    <div className="forecast-container">
         {props.city && props.country && 
         <div className="flex-container forecast">
             <div className="forecast-day">

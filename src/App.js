@@ -83,6 +83,7 @@ class App extends Component {
                 </div>
                 <div className="col-xs-7 form-container">
                   <Form getWeather={this.getWeather} />
+                  <div classname="weather-data">
                   <Suspense fallback={<div>Loading...</div>}>
                     <Weather 
                       temperature={this.state.temperature} 
@@ -102,6 +103,7 @@ class App extends Component {
                       forecastTemp5={this.state.forecastTemp5}
                     />
                   </Suspense>
+                  </div>
                 </div>
               </div>
             </div>
