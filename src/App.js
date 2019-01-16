@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import './App.css';
 import Titles from './components/Titles';
 import Form from './components/Form';
-import Weather from './components/Weather';
-import Forecast from './components/Forecast';
+
+//dynamically importing
+const Weather = lazy(() => import('./components/Weather'));
+const Forecast = lazy(() => import('./components/Forecast'));
 
 const API_KEY = "c1158ceab0a07507b4b692350d17ce1c";
 
@@ -81,23 +83,25 @@ class App extends Component {
                 </div>
                 <div className="col-xs-7 form-container">
                   <Form getWeather={this.getWeather} />
-                  <Weather 
-                    temperature={this.state.temperature} 
-                    humidity={this.state.humidity}
-                    city={this.state.city}
-                    country={this.state.country}
-                    description={this.state.description}
-                    error={this.state.error}
-                  />
-                  <Forecast 
-                    city={this.state.city}
-                    country={this.state.country}
-                    forecastTemp1={this.state.forecastTemp1}
-                    forecastTemp2={this.state.forecastTemp2}
-                    forecastTemp3={this.state.forecastTemp3}
-                    forecastTemp4={this.state.forecastTemp4}
-                    forecastTemp5={this.state.forecastTemp5}
-                  />
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <Weather 
+                      temperature={this.state.temperature} 
+                      humidity={this.state.humidity}
+                      city={this.state.city}
+                      country={this.state.country}
+                      description={this.state.description}
+                      error={this.state.error}
+                    />
+                    <Forecast 
+                      city={this.state.city}
+                      country={this.state.country}
+                      forecastTemp1={this.state.forecastTemp1}
+                      forecastTemp2={this.state.forecastTemp2}
+                      forecastTemp3={this.state.forecastTemp3}
+                      forecastTemp4={this.state.forecastTemp4}
+                      forecastTemp5={this.state.forecastTemp5}
+                    />
+                  </Suspense>
                 </div>
               </div>
             </div>
