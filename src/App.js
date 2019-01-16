@@ -36,6 +36,11 @@ class App extends Component {
 
     const api_call_forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const forecastData = await api_call_forecast.json();
+    //filter every day at 12:00
+    const regexDate = /12:00:00$/;
+    const mapDate = forecastData.list.map(data => data);
+    const filteredDate = mapDate.filter(record => record.dt_txt.match(regexDate));
+    console.log(filteredDate);
 
     if (city && country) {
       //setting state
@@ -46,11 +51,11 @@ class App extends Component {
         humidity: data.main.humidity,
         description: data.weather[0].description,
         error: "",
-        forecastTemp1: Math.round(forecastData.list[1].main.temp),
-        forecastTemp2: Math.round(forecastData.list[9].main.temp),
-        forecastTemp3: Math.round(forecastData.list[17].main.temp),
-        forecastTemp4: Math.round(forecastData.list[25].main.temp),
-        forecastTemp5: Math.round(forecastData.list[33].main.temp)
+        forecastTemp1: Math.round(filteredDate[0].main.temp),
+        forecastTemp2: Math.round(filteredDate[1].main.temp),
+        forecastTemp3: Math.round(filteredDate[2].main.temp),
+        forecastTemp4: Math.round(filteredDate[3].main.temp),
+        forecastTemp5: Math.round(filteredDate[4].main.temp)
       });
     } else {
       this.setState({
@@ -59,12 +64,7 @@ class App extends Component {
         country: undefined,
         humidity: undefined,
         description: undefined,
-        error: "Please enter the value!",
-        forecastTemp1: undefined,
-        forecastTemp2: undefined,
-        forecastTemp3: undefined,
-        forecastTemp4: undefined,
-        forecastTemp5: undefined
+        error: "Please enter the value!"
       });
     }
   }
