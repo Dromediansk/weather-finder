@@ -17,12 +17,17 @@ class App extends Component {
     country: undefined,
     humidity: undefined,
     description: undefined,
-    error: undefined,
     forecastTemp1: undefined,
     forecastTemp2: undefined,
     forecastTemp3: undefined,
     forecastTemp4: undefined,
-    forecastTemp5: undefined
+    forecastTemp5: undefined,
+    forecastWeather1: undefined,
+    forecastWeather2: undefined,
+    forecastWeather3: undefined,
+    forecastWeather4: undefined,
+    forecastWeather5: undefined,
+    error: undefined
   }
 
   // able to use arrow functions in React version higher then 16!
@@ -38,13 +43,13 @@ class App extends Component {
 
     const api_call_forecast = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&appid=${API_KEY}&units=metric`);
     const forecastData = await api_call_forecast.json();
-    //filter every day at 12:00
-    const regexDate = /12:00:00$/;
-    const mapDate = forecastData.list.map(data => data);
-    const filteredDate = mapDate.filter(record => record.dt_txt.match(regexDate));
-    console.log(filteredDate);
 
     if (city && country) {
+      //filter every day at 12:00
+      const regexDate = /12:00:00$/;
+      const mapDate = forecastData.list.map(data => data);
+      const filteredDate = mapDate.filter(record => record.dt_txt.match(regexDate));
+      console.log(filteredDate);
       //setting state
       this.setState({
         temperature: Math.round(data.main.temp),
@@ -52,7 +57,6 @@ class App extends Component {
         country: data.sys.country,
         humidity: data.main.humidity,
         description: data.weather[0].description,
-        error: "",
         forecastTemp1: Math.round(filteredDate[0].main.temp),
         forecastTemp2: Math.round(filteredDate[1].main.temp),
         forecastTemp3: Math.round(filteredDate[2].main.temp),
@@ -62,7 +66,8 @@ class App extends Component {
         forecastWeather2: filteredDate[1].weather[0].main,
         forecastWeather3: filteredDate[2].weather[0].main,
         forecastWeather4: filteredDate[3].weather[0].main,
-        forecastWeather5: filteredDate[4].weather[0].main
+        forecastWeather5: filteredDate[4].weather[0].main,
+        error: ""
       });
     } else {
       this.setState({
@@ -71,6 +76,16 @@ class App extends Component {
         country: undefined,
         humidity: undefined,
         description: undefined,
+        forecastTemp1: undefined,
+        forecastTemp2: undefined,
+        forecastTemp3: undefined,
+        forecastTemp4: undefined,
+        forecastTemp5: undefined,
+        forecastWeather1: undefined,
+        forecastWeather2: undefined,
+        forecastWeather3: undefined,
+        forecastWeather4: undefined,
+        forecastWeather5: undefined,
         error: "Please enter the value!"
       });
     }
