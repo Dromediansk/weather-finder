@@ -103,7 +103,8 @@ button:hover {
 }
 
 .weather__info {
-  width: 60%;
+  width: 100%;
+  height: 35vh;
   font-size: 20px;
   font-weight: 200;
   letter-spacing: 2px;
@@ -134,11 +135,13 @@ button:hover {
 
 /* FORECAST */
 .forecast-container {
-  width: 100%;
-  height: 20vh;
   display: flex;
+  position: absolute;
+  bottom: 20px;
   flex-wrap: wrap;
   align-items: center;
+  width: 100%;
+  height: 30vh;
 }
 
 .forecast {
@@ -157,6 +160,7 @@ button:hover {
   flex-wrap: wrap;
   list-style-type: none;
   width: 8em;
+  height: 8em;
   padding: 10px;
 }
 

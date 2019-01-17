@@ -57,7 +57,12 @@ class App extends Component {
         forecastTemp2: Math.round(filteredDate[1].main.temp),
         forecastTemp3: Math.round(filteredDate[2].main.temp),
         forecastTemp4: Math.round(filteredDate[3].main.temp),
-        forecastTemp5: Math.round(filteredDate[4].main.temp)
+        forecastTemp5: Math.round(filteredDate[4].main.temp),
+        forecastWeather1: filteredDate[0].weather[0].main,
+        forecastWeather2: filteredDate[1].weather[0].main,
+        forecastWeather3: filteredDate[2].weather[0].main,
+        forecastWeather4: filteredDate[3].weather[0].main,
+        forecastWeather5: filteredDate[4].weather[0].main
       });
     } else {
       this.setState({
@@ -83,7 +88,7 @@ class App extends Component {
                 </div>
                 <div className="col-xs-7 form-container">
                   <Form getWeather={this.getWeather} />
-                  <div classname="weather-data">
+                  <div className="weather-data">
                   <Suspense fallback={<div>Loading...</div>}>
                     <Weather 
                       temperature={this.state.temperature} 
@@ -101,6 +106,11 @@ class App extends Component {
                       forecastTemp3={this.state.forecastTemp3}
                       forecastTemp4={this.state.forecastTemp4}
                       forecastTemp5={this.state.forecastTemp5}
+                      forecastWeather1={this.state.forecastWeather1}
+                      forecastWeather2={this.state.forecastWeather2}
+                      forecastWeather3={this.state.forecastWeather3}
+                      forecastWeather4={this.state.forecastWeather4}
+                      forecastWeather5={this.state.forecastWeather5}
                     />
                   </Suspense>
                   </div>
