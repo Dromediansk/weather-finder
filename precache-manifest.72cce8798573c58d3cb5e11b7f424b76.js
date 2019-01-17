@@ -28,7 +28,7 @@ self.__precacheManifest = [
     "url": "/weather-finder/static/css/main.86a1af39.chunk.css"
   },
   {
-    "revision": "980f9fd9a28c6194102495cc0a09cbe8",
+    "revision": "96b4aefa6fc7c57b30c5b8736daf6389",
     "url": "/weather-finder/index.html"
   }
 ];
