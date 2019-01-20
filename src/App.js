@@ -49,7 +49,6 @@ class App extends Component {
       const regexDate = /12:00:00$/;
       const mapDate = forecastData.list.map(data => data);
       const filteredDate = mapDate.filter(record => record.dt_txt.match(regexDate));
-      console.log(filteredDate);
       //setting state
       this.setState({
         temperature: Math.round(data.main.temp),
