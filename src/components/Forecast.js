@@ -3,32 +3,32 @@ import React from 'react';
 const Forecast = (props) => (
     <div className="forecast-container">
         {props.city && props.country && 
-        <div className="flex-container forecast">
-            <div className="forecast-day">
-                <p className="day-title">Tomorrow: </p>
-                <p>{props.forecastTemp1} °C</p>
-                <p>{props.forecastWeather1}</p>
-            </div>
-            <div className="forecast-day">
-                <p className="day-title">2.day: </p>
-                <p>{props.forecastTemp2} °C</p>
-                <p>{props.forecastWeather2}</p>
-            </div>
-            <div className="forecast-day">
-                <p className="day-title">3.day: </p>
-                <p>{props.forecastTemp3} °C</p>
-                <p>{props.forecastWeather3}</p>
-            </div>
-            <div className="forecast-day">
-                <p className="day-title">4.day: </p>
-                <p>{props.forecastTemp4} °C</p>
-                <p>{props.forecastWeather4}</p>
-            </div>
-            <div className="forecast-day">
-                <p className="day-title">5.day: </p>
-                <p>{props.forecastTemp5} °C</p>
-                <p>{props.forecastWeather5}</p>
-            </div>
+        <div className="forecast">
+            <ul className="forecast-day">
+                <li className="day-title">Tomorrow: </li>
+                <li>{props.forecastTemp1} °C</li>
+                <li>{props.forecastWeather1}</li>
+            </ul>
+            <ul className="forecast-day">
+                <li className="day-title">2.day: </li>
+                <li>{props.forecastTemp2} °C</li>
+                <li>{props.forecastWeather2}</li>
+            </ul>
+            <ul className="forecast-day">
+                <li className="day-title">3.day: </li>
+                <li>{props.forecastTemp3} °C</li>
+                <li>{props.forecastWeather3}</li>
+            </ul>
+            <ul className="forecast-day">
+                <li className="day-title">4.day: </li>
+                <li>{props.forecastTemp4} °C</li>
+                <li>{props.forecastWeather4}</li>
+            </ul>
+            <ul className="forecast-day">
+                <li className="day-title">5.day: </li>
+                <li>{props.forecastTemp5} °C</li>
+                <li>{props.forecastWeather5}</li>
+            </ul>
         </div>
         }
     </div>

@@ -98,7 +98,8 @@ button:hover {
 }
 
 .weather-data {
-  display: flex;
+  height: 35vh;
+  display: block;
 }
 
 .weather__info {
@@ -134,36 +135,30 @@ button:hover {
 
 /* FORECAST */
 .forecast-container {
-  display: flex;
-  position: absolute;
-  bottom: 20px;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 100%;
+  width: 50vh;
   height: 30vh;
 }
 
 .forecast {
   margin: 20px 0;
   background-color: white;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-rows: 1fr;
   align-items: center;
+  justify-content: center;
   border-bottom: 2px solid #f16051;
   opacity: 0.85;
 }
 
 .forecast .forecast-day{
-  flex-direction: column;
-  flex-wrap: wrap;
   list-style-type: none;
-  width: 8em;
-  height: 100%;
   padding: 10px;
 }
 
-.forecast .forecast-day p {
+.forecast .forecast-day li {
   text-align: center;
+  padding: 5px;
 }
 
 .forecast .forecast-day .day-title {
