@@ -45,10 +45,14 @@ class App extends Component {
     const forecastData = await api_call_forecast.json();
 
     if (city && country) {
+      const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
       //filter every day at 12:00
-      const regexDate = /12:00:00$/;
-      const mapDate = forecastData.list.map(data => data);
-      const filteredDate = mapDate.filter(record => record.dt_txt.match(regexDate));
+      const regexTime = /12:00:00$/;
+      const mapTime = forecastData.list.map(data => data);
+      const filteredTime = mapTime.filter(record => record.dt_txt.match(regexTime));
+      const filteredDate = filteredTime.map(record => record.dt_txt.match(regexDate));
+      console.log(filteredDate);
+      console.log(filteredTime);
       //setting state
       this.setState({
         temperature: Math.round(data.main.temp),
@@ -56,16 +60,21 @@ class App extends Component {
         country: data.sys.country,
         humidity: data.main.humidity,
         description: data.weather[0].description,
-        forecastTemp1: Math.round(filteredDate[0].main.temp),
-        forecastTemp2: Math.round(filteredDate[1].main.temp),
-        forecastTemp3: Math.round(filteredDate[2].main.temp),
-        forecastTemp4: Math.round(filteredDate[3].main.temp),
-        forecastTemp5: Math.round(filteredDate[4].main.temp),
-        forecastWeather1: filteredDate[0].weather[0].main,
-        forecastWeather2: filteredDate[1].weather[0].main,
-        forecastWeather3: filteredDate[2].weather[0].main,
-        forecastWeather4: filteredDate[3].weather[0].main,
-        forecastWeather5: filteredDate[4].weather[0].main,
+        forecastTemp1: Math.round(filteredTime[0].main.temp),
+        forecastTemp2: Math.round(filteredTime[1].main.temp),
+        forecastTemp3: Math.round(filteredTime[2].main.temp),
+        forecastTemp4: Math.round(filteredTime[3].main.temp),
+        forecastTemp5: Math.round(filteredTime[4].main.temp),
+        forecastWeather1: filteredTime[0].weather[0].main,
+        forecastWeather2: filteredTime[1].weather[0].main,
+        forecastWeather3: filteredTime[2].weather[0].main,
+        forecastWeather4: filteredTime[3].weather[0].main,
+        forecastWeather5: filteredTime[4].weather[0].main,
+        weatherDate1: filteredDate[0][0],
+        weatherDate2: filteredDate[1][0],
+        weatherDate3: filteredDate[2][0],
+        weatherDate4: filteredDate[3][0],
+        weatherDate5: filteredDate[4][0],
         error: ""
       });
     } else {
@@ -85,6 +94,11 @@ class App extends Component {
         forecastWeather3: undefined,
         forecastWeather4: undefined,
         forecastWeather5: undefined,
+        weatherDate1: undefined,
+        weatherDate2: undefined,
+        weatherDate3: undefined,
+        weatherDate4: undefined,
+        weatherDate5: undefined,
         error: "Please enter the value!"
       });
     }
@@ -125,6 +139,11 @@ class App extends Component {
                       forecastWeather3={this.state.forecastWeather3}
                       forecastWeather4={this.state.forecastWeather4}
                       forecastWeather5={this.state.forecastWeather5}
+                      weatherDate1={this.state.weatherDate1}
+                      weatherDate2={this.state.weatherDate2}
+                      weatherDate3={this.state.weatherDate3}
+                      weatherDate4={this.state.weatherDate4}
+                      weatherDate5={this.state.weatherDate5}
                     />
                   </Suspense>
                   </div>
