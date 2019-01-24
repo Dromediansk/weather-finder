@@ -51,8 +51,11 @@ class App extends Component {
       const mapTime = forecastData.list.map(data => data);
       const filteredTime = mapTime.filter(record => record.dt_txt.match(regexTime));
       const filteredDate = filteredTime.map(record => record.dt_txt.match(regexDate));
-      console.log(filteredDate);
-      console.log(filteredTime);
+      const sliceDate = filteredDate.map(date => date[0].slice(5));
+      const splitDate = sliceDate.map(date => date.split('-'));
+      const concatDate = splitDate.map(date => date[1].concat(date[0]));
+      const finalDate = concatDate.map(date => date.substr(0, 2) + '.' + date.substr(2));
+
       //setting state
       this.setState({
         temperature: Math.round(data.main.temp),
@@ -70,11 +73,11 @@ class App extends Component {
         forecastWeather3: filteredTime[2].weather[0].main,
         forecastWeather4: filteredTime[3].weather[0].main,
         forecastWeather5: filteredTime[4].weather[0].main,
-        weatherDate1: filteredDate[0][0],
-        weatherDate2: filteredDate[1][0],
-        weatherDate3: filteredDate[2][0],
-        weatherDate4: filteredDate[3][0],
-        weatherDate5: filteredDate[4][0],
+        weatherDate1: finalDate[0],
+        weatherDate2: finalDate[1],
+        weatherDate3: finalDate[2],
+        weatherDate4: finalDate[3],
+        weatherDate5: finalDate[4],
         error: ""
       });
     } else {
