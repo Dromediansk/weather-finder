@@ -48,13 +48,20 @@ class App extends Component {
       const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
       //filter every day at 12:00
       const regexTime = /12:00:00$/;
-      const mapTime = forecastData.list.map(data => data);
-      const filteredTime = mapTime.filter(record => record.dt_txt.match(regexTime));
-      const filteredDate = filteredTime.map(record => record.dt_txt.match(regexDate));
-      const sliceDate = filteredDate.map(date => date[0].slice(5));
-      const splitDate = sliceDate.map(date => date.split('-'));
-      const concatDate = splitDate.map(date => date[1].concat(date[0]));
-      const finalDate = concatDate.map(date => date.substr(0, 2) + '.' + date.substr(2));
+      const filteredTime = forecastData.list
+        .map(data => data)
+        .filter(record => record.dt_txt.match(regexTime));
+
+      const filteredDate = filteredTime
+        .map(record => record.dt_txt
+          .match(regexDate));
+
+      const finalDate = filteredDate
+        .map(date => date[0].slice(5))
+        .map(date => date.split('-'))
+        .map(date => date[1].concat(date[0]))
+        .map(date => date.substr(0, 2) + '.' + date.substr(2));
+
 
       //setting state
       this.setState({
