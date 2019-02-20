@@ -7,7 +7,7 @@ import Form from './components/Form';
 const Weather = lazy(() => import('./components/Weather'));
 const Forecast = lazy(() => import('./components/Forecast'));
 
-const API_KEY = "c1158ceab0a07507b4b692350d17ce1c";
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class App extends Component {
   // from React v16
